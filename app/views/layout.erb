@@ -9,6 +9,20 @@
       <h1>Welcome to Fwitter!</h1>
       <h2>This is located in layout.erb!</h2>
       <h2>Don't forget to <strong>yield</strong> your views!</h2>
+
+      <nav>
+        <% if !Helpers.is_logged_in?(session) %>
+          <a href="/login"><button>Log In</button></a>
+          <a href="/signup"><button>Sign Up</button></a>
+        <% else %>
+          <form method="POST" action="/logout">
+            <input type="hidden" id="hidden" name="_method" value="delete">
+            <input type="submit" value="Log Out">
+          </form>
+        <% end %>
+      </nav>
+
+      <%= yield  %>
     </div>
 
   </body>
